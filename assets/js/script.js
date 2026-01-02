@@ -216,4 +216,56 @@ document.addEventListener("DOMContentLoaded", function () {
             header.classList.remove("header-scrolled");
           }
         });
+
+        // --- ENVIO DO FORMULÁRIO SEM SAIR DA PÁGINA (AJAX) ---
+        const formContato = document.getElementById("form-contato");
+        
+        if (formContato) {
+            formContato.addEventListener("submit", function(e) {
+                e.preventDefault(); // Impede o redirecionamento padrão
+                
+                const btn = formContato.querySelector(".form-submit-btn");
+                const textoOriginal = btn.innerText;
+
+                // Efeito visual imediato (Carregando)
+                btn.innerText = "Enviando...";
+                btn.style.opacity = "0.7";
+                btn.style.cursor = "wait";
+
+                fetch(formContato.action, {
+                    method: "POST",
+                    body: new FormData(formContato),
+                    headers: {
+                        'Accept': 'application/json' // Importante para não redirecionar
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // SUCESSO: Botão Verde e Mensagem
+                        btn.innerText = "✓ Enviado com Sucesso!";
+                        btn.style.backgroundColor = "#22c55e"; // Verde WhatsApp
+                        btn.style.color = "#fff";
+                        btn.style.cursor = "default";
+                        
+                        formContato.reset(); // Limpa os campos
+
+                        // (Opcional) Volta ao normal depois de 5 segundos
+                        setTimeout(() => {
+                            btn.innerText = textoOriginal;
+                            btn.style.backgroundColor = ""; // Volta a cor original (CSS)
+                            btn.style.opacity = "1";
+                            btn.style.cursor = "pointer";
+                        }, 5000);
+                    } else {
+                        throw new Error('Erro no envio');
+                    }
+                })
+                .catch(error => {
+                    // ERRO: Botão Vermelho
+                    btn.innerText = "Erro. Tente pelo WhatsApp.";
+                    btn.style.backgroundColor = "#ef4444"; // Vermelho
+                    console.error("Erro:", error);
+                });
+            });
+        }
       });

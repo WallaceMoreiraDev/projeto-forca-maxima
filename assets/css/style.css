@@ -903,7 +903,7 @@ section#social div#social-conjunto h3 {
 
 .quemsomos-section {
   position: relative;
-  padding-top: 5rem;
+  padding-top: 2rem;
   padding-bottom: 5rem;
   color: var(--text-white);
   overflow: hidden;
@@ -935,23 +935,27 @@ section#social div#social-conjunto h3 {
 }
 
 .quemsomos-conteudo {
-  position: relative;
-  z-index: 10;
+  display: flex;
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 1.5rem;
 }
 
-.quemsomos-wrapper {
-  text-align: center;
+.quemsomos-div1 {
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ gap: 30px;
+}
+
+.quemsomos-div2 {
+ z-index: 10;
 }
 
 .quemsomos-titulo {
   font-size: 2.25rem;
   font-weight: 700;
-  color: var(--cor-primaria);
-  margin-bottom: 3rem;
 }
 
 @media (min-width: 768px) {
@@ -961,9 +965,10 @@ section#social div#social-conjunto h3 {
 }
 
 .quemsomos-texto {
-  color: var(--text-light);
+  color: rgb(235, 235, 235);
+  font-weight: 400;
   font-size: 1rem;
-  line-height: 1.625;
+  line-height: 1.4rem;
   max-width: 56rem;
   margin-left: auto;
   margin-right: auto;
@@ -971,10 +976,29 @@ section#social div#social-conjunto h3 {
 
 .quemsomos-destaque {
   color: var(--cor-primaria);
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-weight: 700;
 }
 
+.quemsomos-btn {
+  background-color: var(--cor-primaria);
+  width: 200px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s ease;
+  border: none;
+}
+
+.quemsomos-btn:hover {
+  background-color: var(--cor-primaria-hover);
+}
+
+.quemsomos-btn a{
+  background: none;
+  color: var(--text-on-primary);
+}
 /* =========================================
    SEÇÃO COMPROMISSO
    ========================================= */
@@ -982,7 +1006,7 @@ section#social div#social-conjunto h3 {
 .compromisso-section {
   position: relative;
   padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding-bottom: 10rem;
   color: var(--text-white);
   overflow: hidden;
   background-color: var(--bg-dark);
@@ -1001,6 +1025,7 @@ section#social div#social-conjunto h3 {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  position: bottom;
 }
 
 .compromisso-overlay {
@@ -1095,6 +1120,7 @@ section#social div#social-conjunto h3 {
   background-color: var(--bg-secondary);
   padding-top: 4rem;
   padding-bottom: 4rem;
+
 }
 
 .contato-section .container {
@@ -1102,45 +1128,95 @@ section#social div#social-conjunto h3 {
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
 }
 
-.contato-wrapper {
-  text-align: center;
+.contato-div1 {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contato-div2 {
+  width: 400px;
+}
+
+.contato-div2 form{
+  margin-top: 20px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contato-div2 form input{
+  padding: 10px 0px 10px 10px;
+}
+
+.contato-div2 form textarea{
+  padding: 10px 0px 120px 10px;
+}
+
+.form-submit-btn {
+  width: 200px;
+  margin-top: 10px;
+  padding: 10px 10px 10px 10px;
+}
+
+.contato-form-btn {
+  background-color: var(--cor-primaria-dark);
+  width: 200px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s ease;
+  border: none;
+}
+
+.contato-form-btn:hover {
+  background-color: var(--cor-primaria-hover);
+}
+
+.contato-form-btn a{
+  background: none;
+  color: var(--text-white);
 }
 
 .contato-titulo {
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--text-white);
-  margin-bottom: 1.5rem;
 }
 
 .contato-btn-container {
+  padding: 0rem;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
+  justify-content: start;
+  align-items: start;
+
 }
 
 .contato-whatsapp-btn {
+  margin-top: 1rem;
   width: 100%;
-  background-color: var(--whatsapp-green);
+  background-color: var(--cor-primaria-dark);
   color: var(--text-white);
   font-weight: 600;
   font-size: 1rem;
   padding: 0.75rem 2rem;
   border-radius: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
   text-decoration: none;
   transition: background-color 0.2s ease;
+  display: flex;
+  gap: 10px;
 }
 
 .contato-whatsapp-btn:hover {
-  background-color: var(--whatsapp-hover);
+  background-color: var(--cor-primaria-hover);
 }
 
 @media (min-width: 640px) {
@@ -1149,18 +1225,12 @@ section#social div#social-conjunto h3 {
   }
 }
 
-.contato-icon {
-  width: 1.25rem;
-  height: 1.25rem;
-}
-
 .contato-info {
   color: var(--text-dark);
   font-size: 0.875rem;
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
-  margin-top: 2rem;
 }
 
 .contato-info strong {
@@ -1176,6 +1246,10 @@ section#social div#social-conjunto h3 {
 .contato-link:hover {
   color: var(--cor-primaria);
   text-decoration: underline;
+}
+
+.contato-redes-sociais {
+  margin-top: 0.685rem;
 }
 
 /* =========================================
