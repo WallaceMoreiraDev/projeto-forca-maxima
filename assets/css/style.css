@@ -11,7 +11,7 @@
   --cor-primaria-dark: #b58d0a; /* Amarelo queimado (usado no gradiente) */
 
   /* --- Cores de Fundo (Dark Mode) --- */
-  --bg-dark: #ffffff; /* Preto quase absoluto (Fundo principal) */
+  --bg-dark: #141414; /* Preto quase absoluto (Fundo principal)  #141414*/
   --bg-dark-rgb: 20, 20, 20; /* Versão RGB */
   --bg-secondary: #1c1c1c; /* Cinza muito escuro (Seções secundárias) */
   --bg-footer: #000000; /* Preto absoluto */
