@@ -84,7 +84,8 @@ a {
   /* Uso do RGB para transparência: rgba(20, 20, 20, 0.8) */
   background-color: rgba(var(--bg-dark-rgb), 0.8);
 
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
 
   position: sticky;
@@ -356,7 +357,8 @@ a.menu-nomes-item-botao-mobile:hover {
   border-radius: 10px;
   transition: background-color 0.2s ease;
   /* Sombra usando RGB da cor primaria */
-  box-shadow: 0 10px 15px -3px rgba(var(--cor-primaria-rgb), 0.2),
+  box-shadow:
+    0 10px 15px -3px rgba(var(--cor-primaria-rgb), 0.2),
     0 4px 6px -2px rgba(var(--cor-primaria-rgb), 0.2);
 }
 
@@ -454,78 +456,113 @@ section#social div#social-conjunto h3 {
 #diferenciais {
   padding-top: 48px;
   padding-bottom: 80px;
-  background-color: var(--bg-dark);
+  background-color: white;
 }
 
-#diferenciais-container {
-  width: 100%;
-  max-width: 1280px;
+.diferenciais-container {
+  width: 90%; /* Evita que cole nas bordas em telas médias */
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px; /* Aumentei o espaço entre um card e outro para dar respiro */
 }
 
-#diferenciais-title {
+.diferenciais-title {
   font-size: 1.875rem;
-  line-height: 2.25rem;
   font-weight: bold;
   text-align: center;
-  color: var(--text-white);
-  margin-bottom: 48px;
+  color: black;
 }
 
-#diferenciais-cards {
-  display: grid;
-  gap: 2rem;
-  grid-template-columns: repeat(1, 1fr);
+.diferenciais-descricao {
+  color: black;
 }
 
-@media (min-width: 640px) {
-  #diferenciais-cards {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
-  #diferenciais-cards {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-.diferenciais-style-card {
-  background-color: var(--bg-dark);
-  border-radius: 0.75rem;
-  overflow: hidden;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5),
-    0 4px 6px -2px rgba(0, 0, 0, 0.3);
-  border: 1px solid var(--border-dark);
-  transition: transform 0.3s ease;
-}
-
-.diferenciais-style-card:hover {
-  transform: translateY(-0.5rem);
-}
-
-.diferenciais-card-conteudo {
-  padding: 24px;
-}
-
-.diferenciais-card-title {
-  color: var(--text-white);
-  font-size: 1.125rem;
-  line-height: 1.75rem;
+.diferenciais-descricao-destaque {
   font-weight: bold;
 }
 
-.diferenciais-card-p {
-  color: var(--text-medium);
-  font-size: 14px;
-  margin-top: 8px;
+.diferenciais-card,
+.diferenciais-card-inverse {
+  display: flex;
+  justify-content: space-between; /* Empurra os elementos para as extremidades com critério */
+  align-items: center;
+  gap: 60px; /* Espaço maior entre a imagem e o texto */
 }
 
-.diferenciais-card-imagem {
-  width: 100%;
-  height: 192px;
-  object-fit: cover;
+.diferenciais-card {
+  flex-direction: row;
+}
+
+.diferenciais-card-inverse {
+  flex-direction: row-reverse;
+}
+
+/* Ajuste na imagem para ela nunca estourar o container */
+.diferenciais-card-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.diferenciais-card-div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.diferenciais-card-div div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.diferenciais-btn {
+  display: inline-block;
+  margin-top: 0.5rem;
+  background-color: var(--cor-primaria);
+  color: var(--text-on-primary);
+  font-size: 0.875rem;
+  font-weight: 700;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+  box-shadow:
+    0 10px 15px -3px rgba(var(#000000), 0.2),
+    0 4px 6px -2px rgba(var(--cor-primaria-rgb), 0.2);
+}
+
+/* -----------------------------------------------
+   MEDIA QUERY PARA MOBILE (ATÉ 768px)
+----------------------------------------------- */
+@media (max-width: 768px) {
+  /* Resetamos as duas classes para column simples */
+  .diferenciais-card,
+  .diferenciais-card-inverse {
+    flex-direction: column !important; /* O !important garante que o row-reverse morra aqui */
+    text-align: center;
+    gap: 30px;
+  }
+
+  .diferenciais-card-div {
+    /* Centraliza os itens na coluna, mas o botão seguirá o tamanho do conteúdo */
+    align-items: center;
+    text-align: center;
+  }
+
+  .diferenciais-btn {
+    /* Garante que o botão não estique para a largura total da div */
+    width: fit-content;
+    align-self: center;
+  }
+
+  .diferenciais-card-img {
+    width: 100%;
+    max-width: 450px; /* Evita que a imagem fique gigante em tablets */
+  }
 }
 
 /*--------------------------------------------
@@ -535,8 +572,7 @@ section#social div#social-conjunto h3 {
 ----------------------------------------------*/
 
 .oferta-section {
-  background-color: var(--bg-dark);
-  padding-top: 3rem;
+  background-color: white;
   padding-bottom: 2.5rem;
 }
 
@@ -658,7 +694,8 @@ section#social div#social-conjunto h3 {
   border-radius: 0.5rem;
   text-decoration: none;
   transition: background-color 0.2s ease;
-  box-shadow: 0 10px 15px -3px rgba(var(#000000), 0.2),
+  box-shadow:
+    0 10px 15px -3px rgba(var(#000000), 0.2),
     0 4px 6px -2px rgba(var(--cor-primaria-rgb), 0.2);
 }
 
@@ -667,12 +704,12 @@ section#social div#social-conjunto h3 {
 }
 
 /* =========================================
-   SEÇÃO CATÁLOGO DE PRODUTOS
+   SEÇÃO CATÁLOGO DE PRODUTOS (Layout 2 Colunas Mobile)
    ========================================= */
 
 .catalogo-section {
   background-color: var(--bg-dark);
-  padding-top: 2.5rem;
+  padding-top: 4rem;
   padding-bottom: 4rem;
 }
 
@@ -680,12 +717,13 @@ section#social div#social-conjunto h3 {
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  /* Reduzi o padding lateral do container para ganhar espaço para os cards */
+  padding: 0 1rem; 
 }
 
 .catalogo-header {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .catalogo-titulo {
@@ -693,25 +731,112 @@ section#social div#social-conjunto h3 {
   line-height: 2rem;
   font-weight: 700;
   color: var(--text-white);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.catalogo-titulo-destaque {
+  color: #ffc300;
 }
 
 .catalogo-subtitulo {
-  color: var(--cor-primaria);
-  font-weight: 600;
-  margin-bottom: 2rem;
+  color: var(--text-light);
+  font-weight: 500;
+  margin-bottom: 1.5rem;
 }
 
+/* --- GRID DO CATÁLOGO --- */
 .catalogo-grid {
   display: grid;
-  gap: 1.5rem;
   text-align: center;
-  grid-template-columns: repeat(1, 1fr);
+  
+  /* MUDANÇA PRINCIPAL: 2 Colunas no Mobile */
+  grid-template-columns: repeat(2, 1fr); 
+  
+  /* Espaço menor entre os cards para caberem bem */
+  gap: 0.75rem; 
+  
+  /* Removi aquele padding extra lateral que espremia o conteúdo */
+  padding-left: 0;
+  padding-right: 0;
 }
 
+/* --- ESTILO DO CARD (MOBILE) --- */
+.catalogo-card {
+  background-color: var(--bg-dark);
+  /* Padding interno menor para sobrar espaço pra imagem e texto */
+  padding: 0.75rem; 
+  border-radius: 0.5rem;
+  border: 0.1px solid #6f5500;
+  display: flex;
+  flex-direction: column;
+  
+  height: auto; 
+  min-height: 0; 
+}
+
+/* --- IMAGEM (MOBILE) --- */
+.catalogo-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16/9; /* Mantém retangular */
+  object-fit: contain; /* Mostra inteira sem cortar */
+  border-radius: 0.375rem;
+  margin-bottom: 0.5rem;
+  background-color: #000;
+}
+
+/* --- TEXTOS (Ajustados para caber em 2 colunas) --- */
+.catalogo-nome {
+  /* Fonte levemente menor no mobile para não quebrar em 3 linhas */
+  font-size: 1rem; 
+  font-weight: 600;
+  color: var(--text-white);
+  margin-bottom: 0.25rem;
+  line-height: 1.2;
+}
+
+.catalogo-desc {
+  font-size: 0.75rem; /* Descrição menorzinha */
+  color: var(--text-medium);
+  flex-grow: 1;
+  margin-bottom: 0.75rem;
+}
+
+.catalogo-btn {
+  display: block;
+  width: 100%;
+  margin-top: auto;
+  background-color: #927001;
+  color: var(--text-light);
+  
+  /* Botão mais compacto no mobile */
+  font-size: 0.65rem; 
+  font-weight: 700;
+  padding: 0.6rem 0.2rem; /* Menos padding lateral */
+  
+  border-radius: 0.375rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-color 0.2s ease;
+}
+
+/* =========================================
+   REGRAS PARA TABLET E PC (Mantendo o original)
+   ========================================= */
+
 @media (min-width: 640px) {
+  .catalogo-section {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+  }
+  
+  .catalogo-section .container {
+    padding: 0 1.5rem; /* Volta o padding normal */
+  }
+
   .catalogo-grid {
-    grid-template-columns: repeat(2, 1fr);
+    /* No Tablet/PC volta a ter gap maior */
+    gap: 1.5rem; 
   }
 }
 
@@ -719,178 +844,25 @@ section#social div#social-conjunto h3 {
   .catalogo-grid {
     grid-template-columns: repeat(4, 1fr);
   }
-}
 
-.catalogo-card {
-  background-color: var(--bg-dark);
-  padding: 1.5rem;
-  border-radius: 0.5rem;
-  border: 1px solid var(--border-dark);
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.catalogo-img {
-  width: 100%;
-  height: 8rem;
-  object-fit: cover;
-  border-radius: 0.375rem;
-  margin-bottom: 1rem;
-}
-
-.catalogo-nome {
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: var(--text-white);
-  margin-bottom: 0.5rem;
-}
-
-.catalogo-desc {
-  font-size: 0.875rem;
-  color: var(--text-medium);
-  flex-grow: 1;
-  margin-bottom: 1rem;
-}
-
-.catalogo-btn {
-  display: block;
-  width: 100%;
-  margin-top: auto;
-  background-color: var(--bg-secondary);
-  color: var(--cor-primaria);
-  font-size: 0.75rem;
-  font-weight: 700;
-  padding: 0.5rem 1rem;
-  border-radius: 0.375rem;
-  text-decoration: none;
-  text-transform: uppercase;
-  transition: background-color 0.2s ease;
-}
-
-.catalogo-btn:hover {
-  background-color: var(--border-hover);
-}
-
-/* =========================================
-   SEÇÃO VEDAÇÕES USINADAS
-   ========================================= */
-
-.usinadas-section {
-  background-color: var(--bg-dark);
-  padding-top: 2.5rem;
-  padding-bottom: 3rem;
-}
-
-.usinadas-section .container {
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-}
-
-.usinadas-card {
-  background-color: var(--bg-dark);
-  padding: 2rem;
-  border-radius: 0.75rem;
-  border: 1px solid var(--border-dark);
-}
-
-.usinadas-flex {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-}
-
-@media (min-width: 768px) {
-  .usinadas-flex {
-    flex-direction: row;
-    gap: 3rem;
+  .catalogo-card {
+    height: 350px; /* Altura fixa no PC */
+    padding: 1.5rem; 
+    justify-content: space-between;
   }
-}
 
-.usinadas-img-wrapper {
-  width: 100%;
-  flex-shrink: 0;
-}
-
-@media (min-width: 768px) {
-  .usinadas-img-wrapper {
-    width: 41.66%;
+  /* Ajustes da Imagem no PC */
+  .catalogo-img {
+    height: 8rem; 
+    aspect-ratio: auto;
+    object-fit: cover; /* Zoom para preencher */
+    margin-bottom: 1rem;
   }
-}
-
-.usinadas-img {
-  width: 100%;
-  height: auto;
-  border-radius: 0.5rem;
-  object-fit: cover;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
-}
-
-.usinadas-content {
-  width: 100%;
-  text-align: center;
-}
-
-@media (min-width: 768px) {
-  .usinadas-content {
-    width: 58.33%;
-    text-align: left;
-  }
-}
-
-.usinadas-titulo {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--text-white);
-  margin-bottom: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-}
-
-@media (min-width: 768px) {
-  .usinadas-titulo {
-    justify-content: flex-start;
-  }
-}
-
-.usinadas-icon {
-  width: 2rem;
-  height: 2rem;
-  color: var(--cor-primaria);
-}
-
-.usinadas-subtitulo {
-  color: var(--cor-primaria);
-  font-weight: 600;
-  margin-bottom: 1.5rem;
-}
-
-.usinadas-texto {
-  color: var(--text-light);
-  font-size: 0.875rem;
-  margin-bottom: 1.5rem;
-  line-height: 1.5;
-}
-
-.usinadas-btn {
-  display: inline-block;
-  background-color: var(--cor-primaria);
-  color: var(--text-on-primary);
-  font-size: 0.875rem;
-  font-weight: 700;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  text-decoration: none;
-  transition: background-color 0.2s ease;
-}
-
-.usinadas-btn:hover {
-  background-color: var(--cor-primaria-hover);
+  
+  /* Ajustes de Texto no PC (Volta ao tamanho original) */
+  .catalogo-nome { font-size: 1.125rem; }
+  .catalogo-desc { font-size: 0.875rem; }
+  .catalogo-btn  { font-size: 0.75rem; padding: 0.7rem 1rem; }
 }
 
 /* =========================================
@@ -899,11 +871,17 @@ section#social div#social-conjunto h3 {
 
 .quemsomos-section {
   position: relative;
-  padding-top: 2rem;
-  padding-bottom: 5rem;
+  padding-top: 7rem;
+  padding-bottom: 3rem;
   color: var(--text-white);
   overflow: hidden;
   background-color: var(--bg-dark);
+}
+
+.quemsomos-linha-titulo {
+  width: 140px;
+  border: 3px solid rgb(255, 255, 255);
+  border-radius: 5px;
 }
 
 .quemsomos-bg {
@@ -913,12 +891,6 @@ section#social div#social-conjunto h3 {
   right: 0;
   bottom: 0;
   z-index: 0;
-}
-
-.quemsomos-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 .quemsomos-overlay {
@@ -932,21 +904,52 @@ section#social div#social-conjunto h3 {
 
 .quemsomos-conteudo {
   display: flex;
+  flex-direction: column-reverse;
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 1.5rem;
+  gap: 20px;
+}
+
+.quemsomos-conteudo img {
+  width: 100%;
+  border-radius: 10px;
+  max-width: 600px;
+  height: 100%;
+  object-fit: cover;
 }
 
 .quemsomos-div1 {
- display: flex;
- flex-direction: column;
- justify-content: center;
- gap: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  align-items: start;
+  justify-content: start;
+  text-align: left;
+}
+
+@media (min-width: 768px) {
+  .quemsomos-conteudo {
+    flex-direction: row;
+    gap: 80px;
+  }
+
+  .quemsomos-div1 {
+    width: 40%;
+    align-items: start;
+    justify-content: center;
+    text-align: left;
+  }
 }
 
 .quemsomos-div2 {
- z-index: 10;
+  z-index: 10;
+}
+
+@media (min-width: 768px) {
 }
 
 .quemsomos-titulo {
@@ -961,19 +964,18 @@ section#social div#social-conjunto h3 {
 }
 
 .quemsomos-texto {
-  color: rgb(235, 235, 235);
+  color: rgb(188, 188, 188);
   font-weight: 400;
   font-size: 1rem;
   line-height: 1.4rem;
   max-width: 56rem;
+  margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .quemsomos-destaque {
-  color: var(--cor-primaria);
   font-size: 1rem;
-  font-weight: 700;
 }
 
 .quemsomos-btn {
@@ -985,13 +987,14 @@ section#social div#social-conjunto h3 {
   border-radius: 0.5rem;
   transition: background-color 0.2s ease;
   border: none;
+  margin-top: 20px;
 }
 
 .quemsomos-btn:hover {
   background-color: var(--cor-primaria-hover);
 }
 
-.quemsomos-btn a{
+.quemsomos-btn a {
   background: none;
   color: var(--text-on-primary);
 }
@@ -1001,11 +1004,17 @@ section#social div#social-conjunto h3 {
 
 .compromisso-section {
   position: relative;
-  padding-top: 5rem;
-  padding-bottom: 10rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
   color: var(--text-white);
   overflow: hidden;
   background-color: var(--bg-dark);
+}
+
+@media (min-width: 900px) {
+  .compromisso-section {
+    padding-bottom: 10rem;
+  }
 }
 
 .compromisso-bg {
@@ -1069,7 +1078,8 @@ section#social div#social-conjunto h3 {
 
 .compromisso-card:hover {
   border-color: rgba(var(--cor-primaria-rgb), 0.5);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
     0 4px 6px -2px rgba(0, 0, 0, 0.05),
     0 0 15px rgba(var(--cor-primaria-rgb), 0.1);
 }
@@ -1101,167 +1111,189 @@ section#social div#social-conjunto h3 {
 }
 
 /* =========================================
-   SEÇÃO CONTATO
+   RODAPÉ UNIFICADO (MEGA FOOTER)
    ========================================= */
 
-.contato-section {
-  background-color: var(--bg-dark);
-  padding-top: 4rem;
-  padding-bottom: 4rem;
-
-}
-
-.contato-section .container {
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 100px;
-}
-
-.contato-div1 {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.contato-div2 {
-  width: 400px;
-}
-
-.contato-div2 form{
-  margin-top: 20px;
-  width: 400px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.contato-div2 form input{
-  padding: 10px 0px 10px 10px;
-}
-
-.contato-div2 form textarea{
-  padding: 10px 0px 120px 10px;
-}
-
-.form-submit-btn {
-  width: 200px;
-  margin-top: 10px;
-  padding: 10px 10px 10px 10px;
-}
-
-.contato-form-btn {
-  background-color: var(--cor-primaria-dark);
-  width: 200px;
-  font-size: 0.875rem;
-  font-weight: 700;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  transition: background-color 0.2s ease;
-  border: none;
-}
-
-.contato-form-btn:hover {
-  background-color: var(--cor-primaria-hover);
-}
-
-.contato-form-btn a{
-  background: none;
-  color: var(--text-white);
-}
-
-.contato-titulo {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--text-white);
-}
-
-.contato-btn-container {
-  padding: 0rem;
-  display: flex;
-  justify-content: start;
-  align-items: start;
-
-}
-
-.contato-whatsapp-btn {
-  margin-top: 1rem;
-  width: 100%;
-  background-color: var(--cor-primaria-dark);
-  color: var(--text-white);
-  font-weight: 600;
-  font-size: 1rem;
-  padding: 0.75rem 2rem;
-  border-radius: 0.5rem;
-  text-decoration: none;
-  transition: background-color 0.2s ease;
-  display: flex;
-  gap: 10px;
-}
-
-.contato-whatsapp-btn:hover {
-  background-color: var(--cor-primaria-hover);
-}
-
-@media (min-width: 640px) {
-  .contato-whatsapp-btn {
-    width: auto;
-  }
-}
-
-.contato-info {
+.footer-completo {
+  background-color: white; /* Garante que tudo tenha a mesma cor */
+  padding-top: 7rem;
   color: var(--text-dark);
-  font-size: 0.875rem;
+}
+
+.footer-grid {
+  display: flex;
+  flex-direction: column; /* Mobile First: Um embaixo do outro */
+  gap: 3rem;
+  padding-bottom: 7rem;
+}
+
+/* --- LADO ESQUERDO: INFORMAÇÕES --- */
+.footer-info {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.5rem;
+  background: white;
 }
 
-.contato-info strong {
-  color: var(--text-medium);
+.footer-titulo {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: black;
+  margin-bottom: 0.5rem;
 }
 
-.contato-link {
+.footer-dados p {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+}
+
+.footer-dados strong {
+  color: black;
+}
+
+.footer-link {
   color: inherit;
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color 0.2s;
 }
 
-.contato-link:hover {
-  color: var(--cor-primaria);
-  text-decoration: underline;
+.footer-link:hover {
+  color: black;
 }
 
-.contato-redes-sociais {
-  margin-top: 0.685rem;
+.footer-social {
+  display: flex;
+  gap: 10px;
+  margin-top: 0.5rem;
+}
+
+.footer-social img {
+  opacity: 0.8;
+  transition:
+    opacity 0.2s,
+    transform 0.2s;
+}
+
+.footer-social img:hover {
+  opacity: 1;
+  transform: translateY(-3px);
+}
+
+/* Botão WhatsApp Estilizado */
+.whatsapp-btn-footer {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: transparent;
+  border: 1px solid #25d366;
+  color: #25d366;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+  width: 100%; /* Full width no mobile */
+}
+
+.whatsapp-btn-footer:hover {
+  background-color: #25d366;
+  color: #fff;
+}
+
+/* --- LADO DIREITO: FORMULÁRIO --- */
+.footer-form-container {
+  background-color: rgb(241, 241, 241); /* Fundo super leve para destacar */
+  padding: 2rem;
+  border-radius: 7px;
+  border: 1px solid #333;
+}
+
+.footer-chamada {
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.footer-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-form input,
+.footer-form textarea {
+  font-family: inherit;
+  width: 100%;
+  padding: 14px;
+  background-color: white; /* Mais escuro que o fundo */
+  border: none;
+  border-radius: 7px;
+  color: black;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.footer-form textarea {
+  height: 120px;
+  resize: vertical;
+}
+
+.footer-form input:focus,
+.footer-form textarea:focus {
+  border-color: var(--cor-primaria);
+}
+
+.footer-submit-btn {
+  background-color: var(--cor-primaria-dark);
+  color: white;
+  padding: 14px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 5px;
+}
+
+.footer-submit-btn:hover {
+  background-color: var(--cor-primaria-hover);
+}
+
+/* --- BARRA DE COPYRIGHT --- */
+.footer-bottom {
+  border-top: 1px solid #222; /* A linha separadora mágica */
+  padding: 2rem 0;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #888;
+  background-color: black;
 }
 
 /* =========================================
-   RODAPÉ (FOOTER)
+   MEDIA QUERIES (Desktop)
    ========================================= */
+@media (min-width: 900px) {
+  .footer-grid {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 80px;
+  }
 
-.footer-section {
-  background-color: var(--bg-footer);
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
-  color: var(--text-white);
-}
+  .footer-info {
+    width: 40%;
+  }
 
-.footer-section .container {
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-  text-align: center;
-}
+  .footer-form-container {
+    width: 50%;
+    margin-top: 0;
+  }
 
-.footer-texto {
-  color: var(--text-dark);
-  font-size: 0.875rem;
+  .whatsapp-btn-footer {
+    width: auto; /* Botão tamanho normal no PC */
+  }
 }
 
 /* =========================================
@@ -1269,7 +1301,7 @@ section#social div#social-conjunto h3 {
    ========================================= */
 
 .seletor-section {
-  background-color: var(--bg-dark);
+  background-color: white;
   padding-top: 4rem;
   padding-bottom: 2rem;
 }
@@ -1289,12 +1321,12 @@ section#social div#social-conjunto h3 {
 .seletor-titulo {
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--text-white);
+  color: black;
   margin-bottom: 0.75rem;
 }
 
 .seletor-descricao {
-  color: var(--text-medium);
+  color: black;
   font-size: 0.875rem;
   line-height: 1.625;
   max-width: 42rem;
@@ -1310,7 +1342,7 @@ section#social div#social-conjunto h3 {
   font-size: 1.125rem;
   font-weight: 600;
   text-align: center;
-  color: var(--cor-primaria);
+  color: black;
   margin-bottom: 1.5rem;
 }
 
@@ -1347,7 +1379,7 @@ section#social div#social-conjunto h3 {
 
 .selector-btn {
   width: 100%;
-  background-color: transparent;
+  background-color: #141414;
   border: 2px solid var(--border-input);
   border-radius: 0.5rem;
   padding: 1.5rem;
@@ -1425,7 +1457,7 @@ section#social div#social-conjunto h3 {
    ========================================= */
 
 .seletor-cta-section {
-  background-color: var(--bg-dark);
+  background-color: white;
   padding-bottom: 4rem;
   padding-top: 1rem;
 }
@@ -1438,19 +1470,49 @@ section#social div#social-conjunto h3 {
 }
 
 .seletor-cta-box {
+  position: relative;
+  overflow: hidden;
   background-color: var(--bg-secondary);
   text-align: center;
   padding: 2rem;
   border-radius: 0.75rem;
   border: 1px solid var(--border-hover);
-
   transition: all 0.3s ease;
+  /* Importante: Cria o contexto de empilhamento */
+  z-index: 1;
+}
+
+.seletor-cta-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background-image: url("/assets/img/card_seletor.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.4;
+
+  z-index: 0;
+  pointer-events: none;
+  display: block;
 }
 
 .seletor-cta-box:hover {
   border-color: rgba(var(--cor-primaria-rgb), 0.5);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
     0 0 15px rgba(var(--cor-primaria-rgb), 0.2);
+}
+
+.seletor-cta-titulo,
+.seletor-cta-texto,
+.seletor-cta-btn {
+  position: relative;
+  z-index: 2;
 }
 
 .seletor-cta-titulo {
@@ -1484,6 +1546,55 @@ section#social div#social-conjunto h3 {
 
 /*--------------------------------------------
 ----------------------------------------------
+                ICONE WHATSAPP FLUTUANTE
+-----------------------------------------------
+----------------------------------------------*/
+
+.whatsapp-float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 20px; /* Distância do fundo */
+  right: 20px; /* Distância da direita */
+  background-color: #25d366; /* Verde oficial do Zap */
+  color: #fff;
+  border-radius: 50px;
+  text-align: center;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000; /* Garante que fique na frente de tudo */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.whatsapp-float img {
+  width: 35px; /* Tamanho do ícone dentro do círculo */
+}
+
+/* Efeito de hover (interatividade) */
+.whatsapp-float:hover {
+  transform: scale(1.1); /* Dá um zoom leve ao passar o mouse */
+  background-color: #128c7e; /* Tom de verde mais escuro */
+}
+
+/* Ajuste para mobile (se quiser que ele fique menor em telas pequenas) */
+@media (max-width: 768px) {
+  .whatsapp-float {
+    width: 50px;
+    height: 50px;
+    bottom: 15px;
+    right: 15px;
+  }
+  .whatsapp-float img {
+    width: 30px;
+  }
+}
+
+/*--------------------------------------------
+----------------------------------------------
                 ANIMAÇÕES E EFEITOS EXTRAS
 -----------------------------------------------
 ----------------------------------------------*/
@@ -1496,7 +1607,9 @@ section#social div#social-conjunto h3 {
 .reveal {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
 }
 .reveal.visible {
   opacity: 1;
@@ -1569,11 +1682,14 @@ section#social div#social-conjunto h3 {
 }
 
 .product-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 .product-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4),
+  box-shadow:
+    0 10px 20px rgba(0, 0, 0, 0.4),
     0 0 20px rgba(var(--cor-primaria-rgb), 0.2);
 }
 .reset-btn-highlight {
@@ -1582,7 +1698,9 @@ section#social div#social-conjunto h3 {
   font-weight: bold;
   padding: 0.75rem 1.5rem;
   border-radius: 0.5rem;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
   box-shadow: 0 4px 10px rgba(var(--cor-primaria-rgb), 0.2);
 }
 .reset-btn-highlight:hover {
