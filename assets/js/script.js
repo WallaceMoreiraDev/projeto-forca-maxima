@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
               stepTemp.classList.remove("hidden");
             });
           });
-
+// sla
           tempBtns.forEach((btn) => {
             btn.addEventListener("click", () => {
               selectedTemp = btn.dataset.temp;
